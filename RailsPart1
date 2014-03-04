@@ -30,6 +30,13 @@ Creating Models
 4. Type the following to run migrate files
 	rake db:migrate
 
+Creating Relational Models
+
+1. Open Terminal and go to the project_name folder
+2. Type the following to generate a new model
+	rails generate model Model_name fieldname:datatype relational_model:references
+ #remember to name the relational_model in lowercase and type references as seen
+
 Creating records
 
 1. Complete Creating Models first
