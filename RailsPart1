@@ -1,0 +1,94 @@
+How to start a new Rails project
+
+1. Open Terminal and go to the project folder where the project will be saved
+2. Type the following
+	rails new project_name
+3. Go to the project_name folder
+4. Create a new rails server
+	rails server OR rails s
+
+Files/Directory Structure
+
+1. Apps Folder
+	Controllers, Models, Views, Assets
+2. Config Folder
+	Database, Routes
+3. DB Folder
+	Creates a SQL file with all logged changes
+4. Gem File
+	Maintains different libraries which can be utilized for building applications
+	List all gems here
+	gem 'gem_name', '>=1.2.3'
+
+Creating Models
+
+1. Open Terminal and go to the project_name folder
+2. Type the following to generate a new model
+	rails generate model Model_name fieldname:datatype
+3. Type the following the create the database
+	rake db:create
+4. Type the following to run migrate files
+	rake db:migrate
+
+Creating records
+
+1. Complete Creating Models first
+2. Open Rails Console by typing the following:
+	rails c
+3. Create a new record by creating a new instance
+	a. objectname = Model_name.new
+	b. Declare field data
+	objectname.field_name = data
+	OR
+	a. objectname = Model_name.new(:field_name=>"data",:field_name=>"data",:field_name=>"data",:field_name=>"data")
+4. Save/Insert Record
+	objectname.save
+
+Install Hirb
+
+1. Insert the following into the gemfile
+	gem "hirb", "~> 0.7.1"
+2. Run the following in Terminal
+	bundle install
+3. Enter the following in Rails console
+	rails c
+	require('hirb')
+	Hirb.enable
+
+Set Validation
+
+1. In Sublime, go to the project_name folder/app/models/model_name.rb
+2. Under the model class, type the following for the following situations:
+	To see if data exists for the following fields
+		validates :fieldname,:fieldname,:fieldname, :presence=>true
+	Minimum length
+		validates :field_name, length:{minimum: 2}
+	Numerical
+		validates :field_name, numericality: { only_integer:true }
+		validates :field_name, numericality: { greater_than:number }
+		validates :field_name, numericality: { less_than:number }
+3. Restart the Rails console
+4. To review validation errors, type the following in the Rails console
+	object_name.errors
+
+Finding Records
+
+1. To find the first record
+	Model_name.first
+2. To find the last record
+	Model_name.last
+3. To find a specific record by record id
+	Model_name.find(record_id)
+4. To find a specific record by a criteria
+	Model_name.where(field_name:"data")
+5. See all records
+	Model_name.all
+6. See all records in a specific order
+	Model_name.order(:field_name)
+	Model_name.order(field_name: :desc OR :asc)
+7. Update a record
+	new_obj = Model_name.where(record_id)
+	new_obj.field_name = "new data"
+	new_obj.save
+8. Delete a record
+	Model_name.where(record_id).destroy
